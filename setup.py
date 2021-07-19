@@ -9,7 +9,7 @@ setup(
     # Needed to actually package something
     packages=['cc1_levelset_io'],
     # Needed for dependencies
-    install_requires=['git+https://github.com/ChipMcCallahan/CC1LevelsetProto.git'],
+    install_requires=['cc1_levelset_proto @ git+https://github.com/ChipMcCallahan/CC1LevelsetProto.git@main'],
     # *strongly* suggested for sharing
     version='0.1',
     # The license can be anything you like
