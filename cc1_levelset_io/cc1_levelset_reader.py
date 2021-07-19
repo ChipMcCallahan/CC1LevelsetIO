@@ -1,3 +1,9 @@
+import struct
+import io
+import xml.etree.ElementTree as ET
+import re
+from cc1_levelset_proto.cc1_levelset_pb2 import *
+
 def read_byte(bytes):
     return struct.unpack("<B", bytes.read(1))[0]
 
