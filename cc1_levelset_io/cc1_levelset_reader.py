@@ -3,6 +3,8 @@ import io
 import xml.etree.ElementTree as ET
 import re
 from cc1_levelset_proto.cc1_levelset_pb2 import *
+sys.path.append(os.path.abspath('../cc1_levelset_importer'))
+from cc1_levelset_importer import CC1LevelsetImporter
 
 def read_byte(bytes):
     return struct.unpack("<B", bytes.read(1))[0]
@@ -58,7 +60,7 @@ class DATReader:
                     level.map.tiles[j * 32 + i].bottom = arr[i][j][0]
                     level.map.tiles[j * 32 + i].top = arr[i][j][1]
     
-    def read(self, raw_levelset, *, name=None):
+    def read(self, raw_levelset, *):
         raw_levelset=io.BytesIO(raw_levelset)
         _ = read_long(raw_levelset) # magic number, unused
         num_levels = read_short(raw_levelset)
@@ -98,8 +100,6 @@ class DATReader:
                 else:
                     raise ValueError("Encountered Unexpected Field " + str(field))
                 bytes_left -= length + 2
-        if name:
-            levelset.name = name
         return levelset
 
 
@@ -122,8 +122,9 @@ class CCXReader:
 
 
 class CC1LevelsetReader:
-    def read(self, dat, ccx=None):
-        if isinstance(dat, str):
+    def read(self, dat, ccx=None, *, name=None):
+        if isinstance(dat, str): # assume passed in a file name
+            name = name or dat # store the name if another wasn't supplied
             with open(dat, 'rb') as f:
                 dat = f.read()
         if ccx and ccx.endswith('.ccx'):
@@ -134,5 +135,11 @@ class CC1LevelsetReader:
         if ccx:
             ccx_reader = CCXReader()
             ccx_reader.read_into(ccx, levelset)
+        else:
+            if name:
+                levelset.name = name
         return levelset
+
+    def import_and_read(self, levelset_name):
+        return self.read(*importer.get_set(levelset_name), name=levelset_name)
 
