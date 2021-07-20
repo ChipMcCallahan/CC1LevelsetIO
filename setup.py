@@ -1,13 +1,13 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     # Needed to silence warnings (and to be a worthwhile package)
-    name='CC1LevelsetIO',
+    name='cc1_levelset_io',
     url='https://github.com/ChipMcCallahan/CC1LevelsetIO',
     author='Chip McCallahan',
     author_email='thisischipmccallahan@gmail.com',
     # Needed to actually package something
-    packages=['cc1_levelset_io'],
+    packages=find_packages(),
     # Needed for dependencies
     install_requires=['cc1_levelset_proto @ git+https://github.com/ChipMcCallahan/CC1LevelsetProto'],
     # *strongly* suggested for sharing
