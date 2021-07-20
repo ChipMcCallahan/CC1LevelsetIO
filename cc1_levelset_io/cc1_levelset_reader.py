@@ -60,7 +60,7 @@ class DATReader:
                     level.map.tiles[j * 32 + i].bottom = arr[i][j][0]
                     level.map.tiles[j * 32 + i].top = arr[i][j][1]
     
-    def read(self, raw_levelset, *):
+    def read(self, raw_levelset):
         raw_levelset=io.BytesIO(raw_levelset)
         _ = read_long(raw_levelset) # magic number, unused
         num_levels = read_short(raw_levelset)
