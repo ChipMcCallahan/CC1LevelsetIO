@@ -6,8 +6,7 @@ setup(
     url='https://github.com/ChipMcCallahan/CC1LevelsetIO',
     author='Chip McCallahan',
     author_email='thisischipmccallahan@gmail.com',
-    # Needed to actually package something
-    packages=find_packages(),
+    py_modules='cc1_levelset_io',
     # Needed for dependencies
     install_requires=['cc1_levelset_proto @ git+https://github.com/ChipMcCallahan/CC1LevelsetProto'],
     # *strongly* suggested for sharing
