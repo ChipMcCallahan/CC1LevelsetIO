@@ -122,6 +122,9 @@ class CCXReader:
 
 
 class CC1LevelsetReader:
+    def __init__(self):
+        self.importer = CC1LevelsetImporter()
+
     def read(self, dat, ccx=None, *, name=None):
         if isinstance(dat, str): # assume passed in a file name
             name = name or dat # store the name if another wasn't supplied
@@ -141,5 +144,5 @@ class CC1LevelsetReader:
         return levelset
 
     def import_and_read(self, levelset_name):
-        return self.read(*importer.get_set(levelset_name), name=levelset_name)
+        return self.read(*self.importer.get_set(levelset_name), name=levelset_name)
 
