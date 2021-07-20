@@ -5,7 +5,7 @@ import re
 import os
 from cc1_levelset_proto.cc1_levelset_pb2 import *
 sys.path.append(os.path.abspath('../cc1_levelset_importer'))
-from cc1_levelset_importer import CC1LevelsetImporter
+import CC1LevelsetImporter
 
 def read_byte(bytes):
     return struct.unpack("<B", bytes.read(1))[0]
