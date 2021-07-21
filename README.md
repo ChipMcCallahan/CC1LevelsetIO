@@ -6,7 +6,7 @@ Try the [Colab notebook](https://github.com/ChipMcCallahan/CC1LevelsetIO/blob/ma
 Or, use these code snippets.
 
 ```
-!pip install git+https://github.com/ChipMcCallahan/CC1LevelsetIO.git
+pip install git+https://github.com/ChipMcCallahan/CC1LevelsetIO.git
 ```
 
 ```python
