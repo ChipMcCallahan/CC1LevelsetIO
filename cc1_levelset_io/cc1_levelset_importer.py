@@ -39,18 +39,20 @@ class CC1LevelsetImporter:
         resp = requests.get(GLIDERBOT_PREFIX + levelset)
 
         if resp.status_code < 300:
+            print(f"Successfully retrieved {GLIDERBOT_PREFIX + levelset}.")
             self.cache[levelset] = resp.content
             return_set = resp.content
         else:
-            raise Exception(f"Request for CC1Levelset {levelset} failed. {resp.status_code}: {resp.reason}")
+            raise Exception(f"Failed to retrieve {GLIDERBOT_PREFIX + levelset}. {resp.status_code}: {resp.reason}")
         
         return_ccx = None
         if return_set and levelset[:-4] in CCX_FILES:
             resp = requests.get(f"{CCX_PREFIX}{levelset[:-4]}.ccx")
             if resp.status_code < 300:
+                print(f"Successfully retrieved {CCX_PREFIX}{levelset[:-4]}.ccx")
                 return_ccx = resp.text
             else:
-                raise Exception(f"Request for CCX for {levelset} failed. {resp.status_code}: {resp.reason}")
+                raise Exception(f"Failed to retrieve {CCX_PREFIX}{levelset[:-4]}.ccx. {resp.status_code}: {resp.reason}")
         
         return return_set, return_ccx
 
