@@ -99,8 +99,8 @@ class CC1LevelsetWriter:
     def write_layers(self, map):
         layers = [byte_writer(), byte_writer()]
         for i in range(32 * 32):
-            layers[0].write_byte(map.tiles[i].top)
-            layers[1].write_byte(map.tiles[i].bottom)
+            layers[0].write_byte(map[i].top)
+            layers[1].write_byte(map[i].bottom)
         return tuple(self.compress_layer(layer.getvalue()) for layer in layers)
     
     # replace any substrings containing [4, 255] of the same character

@@ -57,8 +57,8 @@ class DATReader:
         for i in range(32):
             for j in range(32):
                 if arr[i][j] != [0, 0]:
-                    level.map.tiles[j * 32 + i].bottom = arr[i][j][0]
-                    level.map.tiles[j * 32 + i].top = arr[i][j][1]
+                    level.map[j * 32 + i].bottom = arr[i][j][0]
+                    level.map[j * 32 + i].top = arr[i][j][1]
     
     def read(self, raw_levelset):
         raw_levelset=io.BytesIO(raw_levelset)
